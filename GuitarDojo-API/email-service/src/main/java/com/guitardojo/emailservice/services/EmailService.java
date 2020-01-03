@@ -26,16 +26,18 @@ public class EmailService {
     @Value("${spring.mail.password}")
     private String password;
 
-    private final String host = "email-smtp.us-east-1.amazon.com";
+    private final String host = "email-smtp.us-east-1.amazonaws.com";
     private Properties props = new Properties();
-    private Session session;
+    protected Session session;
+
 
     // Setup
     private void setup() {
+
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", "25");
 
         session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -56,14 +58,12 @@ public class EmailService {
             message.setFrom(new InternetAddress("donotreply@guitardojosatx.com"));
 
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("guitardojosatx@gmail.com"));
-            message.setSubject(email.getFirstName() + email.getLastName() + "has asked about more info dog!!");
+            message.setSubject(email.getFirstName() + email.getLastName() + " has asked about more info dog!!");
             String htmlText = "<html><body>" +
-                "<h2>Follow up with: " + email.getFirstName() + "</h2>" + 
-                "<br>" +
-                "<h4>At: " + email.getTo() + "</h4>" +
-                "<br> <br>" +
-                "<h4>Phone number: " + email.getPhone() + "</h4>" +
-                "<br>" +
+                "<h3>Follow up with: " + email.getFirstName() + "</h3>" + 
+                "<h4>email: " + email.getEmail() + "</h4>" +
+                "<h4>phone number: " + email.getPhone() + "</h4>" +
+                "<h4>Dude! they said: " + email.getMessage() + "</h4>" +
                 "</body></html>";
             message.setContent(htmlText, "text/html");
             Transport.send(message);

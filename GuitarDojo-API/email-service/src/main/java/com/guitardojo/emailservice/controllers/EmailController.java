@@ -17,7 +17,7 @@ public class EmailController {
     @Autowired
     public EmailService emailservice;
 
-    @PostMapping("/sendEmail")
+    @PostMapping("/sendMail")
     @ResponseBody
     private String sendMail(@RequestBody Email email) {
         try {

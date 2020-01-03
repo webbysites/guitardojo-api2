@@ -1,7 +1,5 @@
 package com.guitardojo.guitardojodata.models;
 
-import java.lang.annotation.Inherited;
-
 import org.springframework.data.annotation.Id;
 
 public class Email {
@@ -16,7 +14,7 @@ public class Email {
     private String firstName;
     private String lastName;
     private String email;
-    // private String message;
+    private String message;
 
     public Email(){}
 
@@ -106,12 +104,12 @@ public class Email {
         this.email = email;
     }
 
-    // public String getMessage() {
-    //     return this.message;
-    // }
+    public String getMessage() {
+        return this.message;
+    }
 
-    // public void setMessage(String message) {
-    //     this.message = message;
-    // }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
 }
