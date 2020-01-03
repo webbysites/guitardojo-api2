@@ -1,4 +1,4 @@
-package controllers;
+package com.guitardojo.contactservice.controllers;
 
 import java.util.List;
 
@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.guitardojo.guitardojodata.models.Contact;
 import com.guitardojo.guitardojodata.repositories.ContactRepository;
 
+
 @RestController
 @RequestMapping("/contact")
 public class ContactController {
 	
 	@Autowired
 	private ContactRepository contactRepo;
+	
 	
 	@PostMapping("/create")
 	public Contact createContact(@RequestBody Contact contact) {
