@@ -58,16 +58,20 @@ public class EmailService {
             message.setFrom(new InternetAddress("donotreply@guitardojosatx.com"));
 
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("guitardojosatx@gmail.com"));
-            message.setSubject(email.getFirstName() + email.getLastName() + " has asked about more info dog!!");
+            message.setSubject(
+                email.getFirstName() + " " + email.getLastName() +
+                " has asked for more info dog!!"
+            );
+            
             String htmlText = "<html><body>" +
                 "<h3>Follow up with: " + email.getFirstName() + "</h3>" + 
-                "<h4>email: " + email.getEmail() + "</h4>" +
-                "<h4>phone number: " + email.getPhone() + "</h4>" +
-                "<h4>Dude! they said: " + email.getMessage() + "</h4>" +
+                "<h4>email:  " + email.getEmail() + "</h4>" +
+                "<h4>phone number:  "  + email.getPhone() + "</h4>" +
+                "<h4>Dude! they said:  " + email.getMessage() + "</h4>" +
                 "</body></html>";
             message.setContent(htmlText, "text/html");
             Transport.send(message);
-            System.out.println("Sent successfully - ADMIN");;
+            System.out.println("Email was sent");
          } catch (MessagingException e) {
              throw new RuntimeException(e);
          }
