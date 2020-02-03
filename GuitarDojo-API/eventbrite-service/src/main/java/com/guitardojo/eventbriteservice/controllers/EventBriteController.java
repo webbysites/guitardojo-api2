@@ -20,8 +20,7 @@ public class EventBriteController {
 	
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	public Object getEvents() {
-		Object events = restTemplate.getForObject(token, Object.class);
-		System.out.println("hello from eventbrite service controller");
+		Object events = restTemplate.getForObject(token + "&expand=venue", Object.class);
 		return events;
 	}
 
